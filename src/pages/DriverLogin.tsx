@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bus, ArrowRight, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Navbar from '@/components/Navbar';
+import NavbarWrapper from '@/components/NavbarWrapper';
 import { useAuth } from '@/context/AuthContext';
 import { shouldShareLocation } from '@/utils/locationService';
 
@@ -71,7 +71,7 @@ const DriverLogin = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar withBackButton={true} />
+      <NavbarWrapper withBackButton={true} />
       
       <div className="flex-1 flex items-center justify-center p-6">
         <motion.div

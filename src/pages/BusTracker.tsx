@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, MapPin, Phone, ArrowLeft } from 'lucide-react';
-import Navbar from '@/components/Navbar';
+import NavbarWrapper from '@/components/NavbarWrapper';
 import LiveMap from '@/components/LiveMap';
 import { getBusById, isInServiceHours } from '@/utils/busData';
 import { toast } from '@/components/ui/use-toast';
@@ -32,7 +31,7 @@ const BusTracker = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar withBackButton={true} />
+      <NavbarWrapper withBackButton={true} />
       
       <div className="flex-1 container mx-auto px-4 py-6">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">

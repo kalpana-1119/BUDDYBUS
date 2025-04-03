@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from '@/components/Navbar';
+import NavbarWrapper from '@/components/NavbarWrapper';
 import BusCard from '@/components/BusCard';
 import { buses, searchBusesByNumber, Bus } from '@/utils/busData';
 
@@ -27,7 +26,6 @@ const PassengerView = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    // Only allow digits and limit to 4 characters
     if (/^\d*$/.test(value) && value.length <= 4) {
       setSearchQuery(value);
     }
@@ -39,7 +37,7 @@ const PassengerView = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar withUserSwitch={true} />
+      <NavbarWrapper withUserSwitch={true} />
       
       <div className="flex-1 container mx-auto px-4 py-6">
         <motion.div
