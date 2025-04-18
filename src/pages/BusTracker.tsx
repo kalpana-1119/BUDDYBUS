@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, MapPin, Phone, ArrowLeft } from 'lucide-react';
@@ -5,11 +6,13 @@ import NavbarWrapper from '@/components/NavbarWrapper';
 import LiveMap from '@/components/LiveMap';
 import { getBusById, isInServiceHours } from '@/utils/busData';
 import { toast } from '@/components/ui/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const BusTracker = () => {
   const { busId } = useParams<{ busId: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'map' | 'info'>('map');
+  const isMobile = useIsMobile();
   
   const bus = busId ? getBusById(busId) : undefined;
   const isActive = bus?.isActive && isInServiceHours();
@@ -30,11 +33,11 @@ const BusTracker = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100 bg-[url('/bus-background.jpg')] bg-cover bg-fixed bg-center bg-opacity-50">
       <NavbarWrapper withBackButton={true} />
       
       <div className="flex-1 container mx-auto px-4 py-6">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-md overflow-hidden max-w-4xl mx-auto">
           <div className="p-4 bg-buddybus-blue text-white">
             <div className="flex justify-between items-center">
               <h1 className="text-2xl font-bold">Bus #{bus.number}</h1>
@@ -84,7 +87,7 @@ const BusTracker = () => {
                   <div className="bg-buddybus-lightblue p-4 rounded-lg flex items-start">
                     <MapPin size={20} className="text-buddybus-blue mr-3 mt-0.5 flex-shrink-0" />
                     <div>
-                      <div className="flex items-center">
+                      <div className="flex items-center flex-wrap">
                         <span className="font-medium">{bus.startPoint}</span>
                         <ArrowLeft size={16} className="mx-2 transform rotate-180" />
                         <span className="font-medium">{bus.endPoint}</span>
@@ -116,7 +119,7 @@ const BusTracker = () => {
                       <Clock size={20} className="text-gray-700 mr-3 mt-0.5 flex-shrink-0" />
                       <div className="w-full">
                         <p className="text-sm text-gray-600 mb-2">Departures from {bus.startPoint}:</p>
-                        <div className="grid grid-cols-4 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                           {bus.scheduledDepartures.map((time, index) => (
                             <div key={index} className="bg-white rounded px-2 py-1 text-center text-sm border border-gray-200">
                               {time}
@@ -138,6 +141,14 @@ const BusTracker = () => {
           </div>
         </div>
       </div>
+      
+      <footer className="bg-buddybus-blue text-white py-4 mt-auto">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-white text-sm">
+            © {new Date().getFullYear()} BuddyBus - A Project by the Computer Science and Engineering Department | Your College Name
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
