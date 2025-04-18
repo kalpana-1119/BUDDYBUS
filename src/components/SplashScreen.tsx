@@ -37,26 +37,60 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ 
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          duration: 0.5 
+        }}
         className="text-white flex flex-col items-center"
       >
-        <Bus size={80} className="mb-4 text-white" />
+        <motion.div
+          animate={{ 
+            rotate: [0, 10, 0, -10, 0],
+            y: [0, -10, 0, -5, 0]
+          }}
+          transition={{ 
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: "loop"
+          }}
+        >
+          <Bus size={100} className="mb-6 text-white filter drop-shadow-lg" />
+        </motion.div>
+        
         <motion.h1 
-          className="text-4xl font-bold mb-2"
+          className="text-5xl font-bold mb-3 tracking-wider"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           BuddyBus
         </motion.h1>
+        <motion.div
+          className="h-1 w-32 bg-white rounded mb-4"
+          initial={{ width: 0 }}
+          animate={{ width: "8rem" }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        />
         <motion.p
-          className="text-lg opacity-80"
+          className="text-xl opacity-90 font-light"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
         >
           Track your ride in real-time
         </motion.p>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-8 text-center text-white/70 text-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+      >
+        <p>XYZ College of Engineering</p>
+        <p className="text-xs mt-1">Department of Computer Science and Engineering</p>
       </motion.div>
     </motion.div>
   );

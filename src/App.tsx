@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { AuthProvider } from "./context/AuthContext";
+import Index from "./pages/Index";
+import UserSelection from "./pages/UserSelection";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +23,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/passenger" />} />
+            <Route path="/" element={<Index />} />
+            <Route path="/select-user" element={<UserSelection />} />
             <Route path="/passenger" element={<PassengerView />} />
             <Route path="/track/:busId" element={<BusTracker />} />
             <Route path="/about" element={<About />} />

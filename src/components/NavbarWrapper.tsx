@@ -25,8 +25,9 @@ const NavbarWrapper: React.FC<NavbarWrapperProps> = ({ withBackButton, withUserS
   
   const location = isInRouterContext ? useLocationHook() : { pathname: '/' };
   
-  // Automatically show back button on all pages except home page
-  const showBackButton = withBackButton !== undefined ? withBackButton : location.pathname !== '/passenger';
+  // Always show back button except on home/landing pages
+  const showBackButton = withBackButton !== undefined ? withBackButton : 
+    (location.pathname !== '/' && location.pathname !== '/select-user');
   
   // If we're already in a Router context, just render the Navbar
   if (isInRouterContext) {
