@@ -11,6 +11,7 @@ import DriverLogin from "./pages/DriverLogin";
 import OwnerLogin from "./pages/OwnerLogin";
 import BusTracker from "./pages/BusTracker";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
 import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient();
