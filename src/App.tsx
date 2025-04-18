@@ -29,6 +29,7 @@ const App = () => (
             <Route path="/driver-login" element={<DriverLogin />} />
             <Route path="/owner-login" element={<OwnerLogin />} />
             <Route path="/track/:busId" element={<BusTracker />} />
+            <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
